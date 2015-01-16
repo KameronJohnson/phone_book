@@ -1,23 +1,10 @@
 require('rspec')
 require('contact')
 
-describe(Contact) do
 
+describe(Contact) do
   before() do
     Contact.clear()
-  end
-
-  describe(".all") do
-    it("is empty at first") do
-      expect(Contact.all()).to(eq([]))
-    end
-  end
-
-  describe("#save") do
-    it("pushes a contact into the array") do
-      test_contact = Contact.new("Billy Jean", "503-555-1111")
-      expect(test_contact.save()).to(eq([test_contact]))
-    end
   end
 
   describe("contact_name") do
@@ -36,10 +23,24 @@ describe(Contact) do
     end
   end
 
-  describe("#id") do
-    it("gives an id for each contact") do
-      test_contact1 = Contact.new("Billy Jean", "503-555-1111")
-      expect(test_contact1.id()).to(eq(1))
+  describe(".all") do
+    it("is empty at first") do
+      expect(Contact.all()).to(eq([]))
+    end
+  end
+
+  describe(".find_contact") do
+    it("will search for the contact by contact name") do
+      test_contact = Contact.new("Billy Jean", "503-555-1111")
+      test_contact.save()
+      expect(Contact.find_contact(test_contact.contact_name())).to(eq(test_contact))
+    end
+  end
+
+  describe("#save") do
+    it("pushes a contact into the array") do
+      test_contact = Contact.new("Billy Jean", "503-555-1111")
+      expect(test_contact.save()).to(eq([test_contact]))
     end
   end
 
@@ -50,15 +51,4 @@ describe(Contact) do
       expect(Contact.all()).to(eq([]))
     end
   end
-
-  describe(".find_contact") do
-    it("finds the contact number by id") do
-      test_contact1 = Contact.new("Billy Jean", "503-555-1111")
-      test_contact1.save()
-      test_contact2 = Contact.new("Mary Sue", "503-555-2222")
-      test_contact2.save()
-      expect(Contact.find_contact(test_contact1.id())).to(eq(test_contact1))
-    end
-  end
-
 end #end class

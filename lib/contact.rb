@@ -11,34 +11,34 @@ class Contact
     @contact_name
   end
 
-  define_method(:phone_number) do
-    @phone_number
+  define_singleton_method(:all) do
+    @@contacts
   end
 
   define_method(:id) do
     @id
   end
 
-  define_singleton_method(:all) do
-    @@contacts
+  define_method(:phone_number) do
+    @phone_number
   end
 
   define_method(:save) do
     @@contacts.push(self)
   end
 
-  define_singleton_method(:clear) do
-    @@contacts = []
-  end
-
-  define_singleton_method(:find_contact) do |searched_contact|
+  define_singleton_method(:find_contact) do |contact_search|
     found_contact = nil
-    @@contacts.each() do |contact_in_class|
-      if contact_in_class.id() == searched_contact
-        found_contact = contact_in_class
+    @@contacts.each() do |contact|
+      if contact.contact_name() == contact_search
+        found_contact = contact
       end
     end
     found_contact
+  end
+
+  define_singleton_method(:clear) do
+    @@contacts = []
   end
 
 end #end class
