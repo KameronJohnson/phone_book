@@ -1,0 +1,26 @@
+<h1>Add a contact to: <%= @contact.contact_name() %> </h1>
+
+<form action="/contacts" method="post">
+  <input id='contact_id' name='contact_id' type='hidden' value='<%= @contact.id() %>'>
+
+  <label for='home'>Home Phone:</label>
+  <input id='home' name='home' type='text'>
+
+  <label for='work'>Work Phone:</label>
+  <input id='work' name='work' type='text'>
+
+  <label for='cell'>Cell Phone:</label>
+  <input id='cell' name='cell' type='text'>
+
+  <button type="submit">Add Contact:</button>
+</form>
+
+<h3>Here are all phone numbers in your contacts</h3>
+
+<!-- <ul>
+  <% @contacts.phone_numbers().each() do |number| %>
+  <li><a href="/contacts/<%= number.id() %>"><%= number.home() %> <%= number.work() %> <%= number.cell() %></a></li>
+  <% end %>
+</ul> -->
+
+<<a href="/">Return to Main Page</a>
